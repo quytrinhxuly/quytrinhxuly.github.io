@@ -1,10 +1,31 @@
-.App {
-  text-align: center;
+.my-form .ant-form-item {
+  margin-bottom: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.my-form .ant-typography {
+  margin-top: 10px;
+}
+
+.my-form .form-title {
+  color: #ff7a57;
+}
+
+.my-form .form-card {
+  margin-bottom: 15px;
+}
+
+.my-form .form-card h4{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.my-form .form-card .ant-card-head {
+  min-height: 40px;
+  padding: 0 15px;
+}
+
+.main-form-card {
+  background: #f4f4f4;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +53,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
