@@ -4,8 +4,6 @@ import { generateUUID } from "../utils/index";
 
 const ticketServices = {
   getAsync: async () => {
-    // https://script.google.com/macros/s/AKfycbzaSdxz532_rI3sAtkts1vcBC6pZiZEZcpJs8FsTj-xRpibJ3Mw8MBw4CE-Hph1i6X-/exec
-
     const response = await api.get("exec");
     console.log("response ", response.data);
     return "";
@@ -14,47 +12,74 @@ const ticketServices = {
     try {
       const parentId = generateUUID();
       const list_xac_minh_khach_hang =
-        formValues["xac_minh_khach_hang"]?.map((data, index) => {
-          return [
-            generateUUID(),
-            parentId,
-            index + 1,
-            data["dia_chi_cua_hang"],
-            data["anh_checkin_tai_cua_hang"],
-            data["anh_san_pham_kinh_doanh"],
-            data["dia_chi_cua_hang_la_noi_lay_hang"],
-            data["dia_chi_lay_hang"],
-            data["anh_checkin_tai_noi_lay_hang"],
-          ];
-        }) ?? [];
+        formValues["xac_minh_khach_hang"]
+          ?.filter(
+            (data) =>
+              Boolean(data["dia_chi_cua_hang"]) &&
+              Boolean(data["anh_checkin_tai_cua_hang"]) &&
+              Boolean(data["anh_san_pham_kinh_doanh"]) &&
+              Boolean(data["dia_chi_cua_hang_la_noi_lay_hang"])
+          )
+          ?.map((data, index) => {
+            return [
+              generateUUID(),
+              parentId,
+              index + 1,
+              data["dia_chi_cua_hang"],
+              data["anh_checkin_tai_cua_hang"],
+              data["anh_san_pham_kinh_doanh"],
+              data["dia_chi_cua_hang_la_noi_lay_hang"],
+              data["dia_chi_lay_hang"],
+              data["anh_checkin_tai_noi_lay_hang"],
+            ];
+          }) ?? [];
 
       const list_tinh_trang_kinh_doanh =
-        formValues["tinh_trang_kinh_doanh"]?.map((data, index) => {
-          return [
-            generateUUID(),
-            parentId,
-            index + 1,
-            data["khach_ban_si_le"],
-            data["nganh_hang"],
-            data["thang_cao_diem_ban_duoc_hang"],
-            data["so_nam_ban_hang"],
-            data["so_nhan_vien_shop"],
-          ];
-        }) ?? [];
+        formValues["tinh_trang_kinh_doanh"]
+          ?.filter(
+            (data) =>
+              Boolean(data["khach_ban_si_le"]) &&
+              Boolean(data["nganh_hang"]) &&
+              Boolean(data["thang_cao_diem_ban_duoc_hang"]) &&
+              data["thang_cao_diem_ban_duoc_hang"]?.length > 0 &&
+              Boolean(data["so_nam_ban_hang"]) &&
+              Boolean(data["so_nhan_vien_shop"])
+          )
+          .map((data, index) => {
+            return [
+              generateUUID(),
+              parentId,
+              index + 1,
+              data["khach_ban_si_le"],
+              data["nganh_hang"],
+              data["thang_cao_diem_ban_duoc_hang"]?.join(","),
+              data["so_nam_ban_hang"],
+              data["so_nhan_vien_shop"],
+            ];
+          }) ?? [];
 
       const list_thong_tin_tat_ca_cac_kenh_ban_hang =
-        formValues["thong_tin_tat_ca_cac_kenh_ban_hang"]?.map((data, index) => {
-          return [
-            generateUUID(),
-            parentId,
-            index + 1,
-            data["kenh_ban_hang_online"],
-            data["link_kenh_ban_hang"],
-            data["luot_theo_doi_hoac_thich_kenh"],
-            data["co_chay_quang_cao_khong"],
-            data["co_livestream_ban_hang_khong"],
-          ];
-        }) ?? [];
+        formValues["thong_tin_tat_ca_cac_kenh_ban_hang"]
+          ?.filter(
+            (data) =>
+              Boolean(data["kenh_ban_hang_online"]) &&
+              Boolean(data["link_kenh_ban_hang"]) &&
+              Boolean(data["luot_theo_doi_hoac_thich_kenh"]) &&
+              Boolean(data["co_chay_quang_cao_khong"]) &&
+              Boolean(data["co_livestream_ban_hang_khong"])
+          )
+          ?.map((data, index) => {
+            return [
+              generateUUID(),
+              parentId,
+              index + 1,
+              data["kenh_ban_hang_online"],
+              data["link_kenh_ban_hang"],
+              data["luot_theo_doi_hoac_thich_kenh"],
+              data["co_chay_quang_cao_khong"],
+              data["co_livestream_ban_hang_khong"],
+            ];
+          }) ?? [];
 
       const payload = {
         sheets: [

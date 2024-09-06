@@ -26,6 +26,8 @@ function QuyTrinhXuLyPage() {
   const { Toast } = useAppCtx();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [form] = Form.useForm();
+
   function handleSubmitForm(values) {
     setIsLoading(true);
     ticketServices.submitAsync(values, (response) => {
@@ -40,11 +42,17 @@ function QuyTrinhXuLyPage() {
     });
   }
 
+  function formChange(e) {
+    console.log("... ", form.getFieldsValue())
+  }
+
   return (
     <Card title="TẠO PHIẾU MỚI" className="main-form-card">
       <Row>
         <Col span={24}>
           <Form
+            form={form}
+            onChange={formChange}
             onFinish={handleSubmitForm}
             className="my-form"
             layout="vertical"
@@ -58,6 +66,7 @@ function QuyTrinhXuLyPage() {
                     options={nhom_quy_trinh}
                     titleField="name"
                     valueField="name"
+                    disabled
                     autoSelectDefaultValue
                   />
                 </Form.Item>
@@ -85,6 +94,12 @@ function QuyTrinhXuLyPage() {
                     label="Mã nhân viên (AM/BDM)"
                     name="ma_nhan_vien"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng nhập giá trị!",
+                      },
+                    ]}
                   >
                     <Input type="text" placeholder="Nhập giá trị số" />
                   </Form.Item>
@@ -94,6 +109,12 @@ function QuyTrinhXuLyPage() {
                     label="Đề xuất giá bán với loại dịch vụ"
                     name="de_xuat_gia_ban_voi_loai_dich_vu"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
                   >
                     <SelectOptions options={de_xuat_gia_ban_voi_loai_dich_vu} />
                   </Form.Item>
@@ -111,6 +132,12 @@ function QuyTrinhXuLyPage() {
                     label="Tình trạng khách hàng"
                     name="tinh_trang_khach_hang"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
                   >
                     <SelectOptions options={tinh_trang_khach_hang} />
                   </Form.Item>
@@ -121,6 +148,12 @@ function QuyTrinhXuLyPage() {
                     label="Mã khách hàng"
                     name="ma_khach_hang"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng nhập giá trị!",
+                      },
+                    ]}
                   >
                     <Input placeholder="Nhập giá trị" />
                   </Form.Item>
@@ -131,6 +164,12 @@ function QuyTrinhXuLyPage() {
                     label="Link phiếu cài giá"
                     name="link_phieu_cai_gia"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng nhập giá trị!",
+                      },
+                    ]}
                   >
                     <Input placeholder="Nhập giá trị" />
                   </Form.Item>
@@ -141,6 +180,12 @@ function QuyTrinhXuLyPage() {
                     label="Mô tả lý do đề xuất"
                     name="mo_ta_ly_do_de_xuat"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
                   >
                     <SelectOptions options={mo_ta_ly_do_de_xuat} />
                   </Form.Item>
@@ -160,7 +205,17 @@ function QuyTrinhXuLyPage() {
             >
               <Row gutter={[15]}>
                 <Col sm={12} span={24}>
-                  <Form.Item label="Đối thủ" name="doi_thu" required>
+                  <Form.Item
+                    label="Đối thủ"
+                    name="doi_thu"
+                    required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
+                  >
                     <SelectOptions options={doi_thu} />
                   </Form.Item>
                 </Col>
@@ -170,6 +225,12 @@ function QuyTrinhXuLyPage() {
                     label="Loại giá đang đi theo Tuyến"
                     name="loai_gia_dang_di_theo_tuyen"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
                   >
                     <SelectOptions options={loai_gia_dang_di_theo_tuyen} />
                   </Form.Item>
@@ -180,6 +241,12 @@ function QuyTrinhXuLyPage() {
                     label="Loại giá đang đi theo Khối lượng"
                     name="loai_gia_dang_di_theo_khoi_luong"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
                   >
                     <SelectOptions options={loai_gia_dang_di_theo_khoi_luong} />
                   </Form.Item>
@@ -190,6 +257,12 @@ function QuyTrinhXuLyPage() {
                     label="Màn hình sản lượng/ doanh thu đơn bên đối thủ"
                     name="man_hinh_san_luong_doanh_thu_don_ben_doi_thu"
                     required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng tải ảnh lên!",
+                      },
+                    ]}
                   >
                     <UploadButton />
                   </Form.Item>

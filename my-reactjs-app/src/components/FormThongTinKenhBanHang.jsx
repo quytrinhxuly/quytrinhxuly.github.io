@@ -26,11 +26,13 @@ export default function FormThongTinKenhBanHang(props) {
       title: "STT",
       dataIndex: "stt",
       key: "stt",
+      width: "50px"
     },
     {
       title: "Kênh bán hàng",
       dataIndex: "sellChannel",
       key: "sellChannel",
+      width: '200px',
       render: (value, record) => {
         return (
           <Form.Item name={[name, record.stt - 1, "kenh_ban_hang_online"]}>
@@ -55,6 +57,7 @@ export default function FormThongTinKenhBanHang(props) {
       title: "Lượt theo dõi hoặc thích kênh",
       dataIndex: "totalFollower",
       key: "totalFollower",
+      width: '230px',
       render: (value, record) => {
         return (
           <Form.Item
@@ -69,6 +72,7 @@ export default function FormThongTinKenhBanHang(props) {
       title: "Có chạy quảng cáo không?",
       dataIndex: "isRunAds",
       key: "isRunAds",
+      width: '80px',
       render: (value, record) => {
         return (
           <Form.Item name={[name, record.stt - 1, "co_chay_quang_cao_khong"]}>
@@ -81,6 +85,7 @@ export default function FormThongTinKenhBanHang(props) {
       title: "Có livestream bán hàng không",
       dataIndex: "isLiveStream",
       key: "isLiveStream",
+      width: '80px',
       render: (value, record) => {
         return (
           <Form.Item

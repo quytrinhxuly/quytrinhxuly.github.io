@@ -1,0 +1,11 @@
+.login-page .ant-pro-form-login-page-left {
+    background-color: rgba(20, 20, 20, 0.8);
+    height: auto;
+    margin: 0;
+    padding: unset;
+}
+
+.login-page .ant-pro-form-login-page-left .ant-pro-form-login-page-container {
+    background-color: unset !important;
+    background-image: unset;
+}

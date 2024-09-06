@@ -1,10 +1,11 @@
 // api.js
 import axios from 'axios';
+import { env } from '../env';
 
 // Create an Axios instance with custom configuration
 const api = axios.create({
-  baseURL: 'https://script.google.com/macros/s/AKfycbzaSdxz532_rI3sAtkts1vcBC6pZiZEZcpJs8FsTj-xRpibJ3Mw8MBw4CE-Hph1i6X-', // Replace with your API base URL
-  timeout: 10000, // Optional: Set request timeout (in milliseconds)
+  baseURL: env.APP_SCRIPT_API_HOST, // Replace with your API base URL
+  timeout: 30000, // Optional: Set request timeout (in milliseconds)
   headers: {
     'Content-Type': 'text/plain;charset=utf-8', // Optional: Default headers
     //'Authorization': 'Bearer YOUR_TOKEN', // Optional: Set Authorization header

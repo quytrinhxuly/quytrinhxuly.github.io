@@ -19,7 +19,7 @@ export default function FormXacMinhKhachHang(props) {
   const columns = [
     {
       title: "STT",
-      with: "50px",
+      width: "50px",
       dataIndex: "stt",
       key: "stt",
     },
@@ -27,6 +27,7 @@ export default function FormXacMinhKhachHang(props) {
       title: "Địa chỉ cửa hàng",
       dataIndex: "storeAddress",
       key: "storeAddress",
+      width: "300px",
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_cua_hang"]}>
@@ -39,6 +40,7 @@ export default function FormXacMinhKhachHang(props) {
       title: "Ảnh check-in tại cửa hàng (Location & thời gian chụp)",
       dataIndex: "imgStoreAddress",
       key: "imgStoreAddress",
+      width: "200px",
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_cua_hang"]}>
@@ -51,6 +53,7 @@ export default function FormXacMinhKhachHang(props) {
       title: "Ảnh sản phẩm kinh doanh",
       dataIndex: "imgProduct",
       key: "imgProduct",
+      width: "200px",
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_san_pham_kinh_doanh"]}>
@@ -63,6 +66,7 @@ export default function FormXacMinhKhachHang(props) {
       title: "Địa chỉ cừa hàng là nơi lấy hàng?",
       dataIndex: "isStorePickup",
       key: "isStorePickup",
+      width: "200px",
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_cua_hang_la_noi_lay_hang"]}>
@@ -80,6 +84,8 @@ export default function FormXacMinhKhachHang(props) {
       title: "Địa chỉ lấy hàng",
       dataIndex: "pickupAddress",
       key: "pickupAddress",
+      width: "200px",
+
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_lay_hang"]}>
@@ -92,6 +98,8 @@ export default function FormXacMinhKhachHang(props) {
       title: "Ảnh check-in tại nơi lấy hàng (Location & thời gian chụp)",
       dataIndex: "imgPickupAddress",
       key: "imgPickupAddress",
+      width: "200px",
+
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_noi_lay_hang"]}>
@@ -145,7 +153,7 @@ export default function FormXacMinhKhachHang(props) {
         dataSource={dataSource}
         columns={columns}
         scroll={{
-          x: "60vw",
+          x: "70vw",
         }}
       />
       <Button onClick={handleAdd} type="text">

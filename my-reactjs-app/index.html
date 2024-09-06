@@ -1,0 +1,23 @@
+<form id="form">
+  <input name="file" id="uploadfile" type="file" />
+  <input id="submit" type="submit" />
+</form>
+<script>
+  const form = document.getElementById("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const file = form.file.files[0];
+    const fr = new FileReader();
+    fr.readAsArrayBuffer(file);
+    fr.onload = (f) => {
+      const url = "https://script.google.com/macros/s/AKfycbzaSdxz532_rI3sAtkts1vcBC6pZiZEZcpJs8FsTj-xRpibJ3Mw8MBw4CE-Hph1i6X-/exec?endpoint=upload";
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify([...new Int8Array(f.target.result)]),
+      })
+        .then((res) => res.json())
+        .then((e) => console.log(e))
+        .catch((err) => console.log(err));
+    };
+  });
+</script>

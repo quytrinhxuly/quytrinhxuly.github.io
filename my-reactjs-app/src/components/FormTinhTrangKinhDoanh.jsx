@@ -18,10 +18,11 @@ import {
   so_nhan_vien_cua_shop,
 } from "../constants/metadata";
 
-function MonthOfTopSellingCheckBoxes() {
+function MonthOfTopSellingCheckBoxes(props) {
+  const { onChange } = props;
   const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
-    <Checkbox.Group style={{ width: "100%" }}>
+    <Checkbox.Group style={{ width: "100%" }} onChange={onChange}>
       <Row>
         {months.map((i, index) => (
           <Col key={index} span={24}>
@@ -78,7 +79,7 @@ export default function FormTinhTrangKinhDoanh(props) {
       title: "Ngành hàng",
       dataIndex: "category",
       key: "category",
-      width: "250px",
+      width: "auto",
       render: (value, record) => {
         return (
           <Form.Item
@@ -94,7 +95,7 @@ export default function FormTinhTrangKinhDoanh(props) {
       title: "Tháng cao điểm bán được hàng",
       dataIndex: "monthOfTopSelling",
       key: "monthOfTopSelling",
-      width: "250px",
+      width: "300px",
       render: (value, record) => {
         return (
           <Form.Item
@@ -110,6 +111,7 @@ export default function FormTinhTrangKinhDoanh(props) {
       title: "Số năm bán hàng",
       dataIndex: "totalSellAge",
       key: "totalSellAge",
+      width: "150px",
       render: (value, record) => {
         return (
           <Form.Item
@@ -125,6 +127,7 @@ export default function FormTinhTrangKinhDoanh(props) {
       title: "Số nhân viên shop",
       dataIndex: "totalStaffMembers",
       key: "totalStaffMembers",
+      width: "200px",
       render: (value, record) => {
         return (
           <Form.Item

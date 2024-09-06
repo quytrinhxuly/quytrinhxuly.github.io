@@ -46,7 +46,7 @@ const AppProvider = ({ children, ...props }) => {
         style: { fontFamily: props.fontFamily },
       });
     },
-    success: ({ message, description = null, placement = "bottom" }) => {
+    success: ({ message, description = null, placement = "top" }) => {
       messageApi.success({
         closeIcon: false,
         btn: "",
@@ -60,7 +60,7 @@ const AppProvider = ({ children, ...props }) => {
     error: ({
       message,
       description = null,
-      placement = "bottom",
+      placement = "top",
       duration = 2,
       className = "toast-message error",
     }) => {
