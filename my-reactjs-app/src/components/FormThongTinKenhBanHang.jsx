@@ -45,7 +45,7 @@ export default function FormThongTinKenhBanHang(props) {
       key: "sellChannelUrl",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "sellChannelUrl"]}>
+          <Form.Item name={[name, record.stt - 1, "link_kenh_ban_hang"]}>
             <Input placeholder="Nhập giá trị" />
           </Form.Item>
         );

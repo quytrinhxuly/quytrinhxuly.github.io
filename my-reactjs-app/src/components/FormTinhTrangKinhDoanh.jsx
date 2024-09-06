@@ -23,8 +23,8 @@ function MonthOfTopSellingCheckBoxes() {
   return (
     <Checkbox.Group style={{ width: "100%" }}>
       <Row>
-        {months.map((i) => (
-          <Col span={24}>
+        {months.map((i, index) => (
+          <Col key={index} span={24}>
             <Checkbox value={i}>Tháng {i}</Checkbox>
           </Col>
         ))}
@@ -60,7 +60,10 @@ export default function FormTinhTrangKinhDoanh(props) {
       width: "150px",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "sellType"]}>
+          <Form.Item
+            key={record.stt}
+            name={[name, record.stt - 1, "khach_ban_si_le"]}
+          >
             <Radio.Group>
               <Space direction="vertical">
                 <Radio value={true}>Sỉ</Radio>
@@ -78,7 +81,10 @@ export default function FormTinhTrangKinhDoanh(props) {
       width: "250px",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "category"]}>
+          <Form.Item
+            key={record.stt}
+            name={[name, record.stt - 1, "nganh_hang"]}
+          >
             <SelectOptions options={nganh_hang} />
           </Form.Item>
         );
@@ -91,7 +97,10 @@ export default function FormTinhTrangKinhDoanh(props) {
       width: "250px",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "monthOfTopSelling"]}>
+          <Form.Item
+            key={record.stt}
+            name={[name, record.stt - 1, "thang_cao_diem_ban_duoc_hang"]}
+          >
             <MonthOfTopSellingCheckBoxes />
           </Form.Item>
         );
@@ -103,7 +112,10 @@ export default function FormTinhTrangKinhDoanh(props) {
       key: "totalSellAge",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "totalSellAge"]}>
+          <Form.Item
+            key={record.stt}
+            name={[name, record.stt - 1, "so_nam_ban_hang"]}
+          >
             <SelectOptions options={so_nam_ban_hang} />
           </Form.Item>
         );
@@ -115,7 +127,10 @@ export default function FormTinhTrangKinhDoanh(props) {
       key: "totalStaffMembers",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "totalStaffMembers"]}>
+          <Form.Item
+            key={record.stt}
+            name={[name, record.stt - 1, "so_nhan_vien_shop"]}
+          >
             <SelectOptions options={so_nhan_vien_cua_shop} />
           </Form.Item>
         );
@@ -123,9 +138,13 @@ export default function FormTinhTrangKinhDoanh(props) {
     },
     {
       key: "action",
-      render: (record) => {
+      render: (_, record) => {
         return (
-          <Button onClick={() => handleRemove(record)} type="text">
+          <Button
+            key={record.stt}
+            onClick={() => handleRemove(record)}
+            type="text"
+          >
             <DeleteFilled />
           </Button>
         );

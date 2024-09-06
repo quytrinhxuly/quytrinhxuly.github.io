@@ -29,7 +29,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "storeAddress",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "storeAddress"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_cua_hang"]}>
             <Input placeholder="Nhập giá trị" value={value} />
           </Form.Item>
         );
@@ -41,7 +41,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "imgStoreAddress",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "imgStoreAddress"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_cua_hang"]}>
             <UploadButton />
           </Form.Item>
         );
@@ -53,7 +53,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "imgProduct",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "imgProduct"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_san_pham_kinh_doanh"]}>
             <UploadButton />
           </Form.Item>
         );
@@ -65,7 +65,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "isStorePickup",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "isStorePickup"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_cua_hang_la_noi_lay_hang"]}>
             <Radio.Group>
               <Space direction="vertical">
                 <Radio value={true}>Đúng</Radio>
@@ -82,7 +82,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "pickupAddress",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "pickupAddress"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_lay_hang"]}>
             <Input placeholder="Nhập giá trị" value={value} />
           </Form.Item>
         );
@@ -94,7 +94,7 @@ export default function FormXacMinhKhachHang(props) {
       key: "imgPickupAddress",
       render: (value, record) => {
         return (
-          <Form.Item name={[name, record.stt - 1, "imgPickupAddress"]}>
+          <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_noi_lay_hang"]}>
             <UploadButton />
           </Form.Item>
         );
@@ -102,9 +102,9 @@ export default function FormXacMinhKhachHang(props) {
     },
     {
       key: "action",
-      render: (record) => {
+      render: (value, record) => {
         return (
-          <Button onClick={() => handleRemove(record)} type="text">
+          <Button key={record.stt} onClick={() => handleRemove(record)} type="text">
             <DeleteFilled />
           </Button>
         );

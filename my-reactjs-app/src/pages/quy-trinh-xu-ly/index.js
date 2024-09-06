@@ -32,17 +32,16 @@ function QuyTrinhXuLyPage() {
             onFinish={handleSubmitForm}
             className="my-form"
             layout="vertical"
-            labelCol={{ span: 22 }}
-            wrapperCol={{ span: 22 }}
+            labelCol={{ span: 24 }}
+            wrapperCol={{ span: 24 }}
           >
-            <Row>
+            <Row gutter={[15]}>
               <Col sm={12} span={24}>
                 <Form.Item label="Nhóm quy trình" name="nhom_quy_trinh">
                   <SelectOptions
                     options={nhom_quy_trinh}
                     titleField="name"
                     valueField="command"
-                    disabled
                     autoSelectDefaultValue
                   />
                 </Form.Item>
@@ -64,7 +63,7 @@ function QuyTrinhXuLyPage() {
               title={<FormTitle>Thông tin người đề xuất</FormTitle>}
               className="form-card"
             >
-              <Row>
+              <Row gutter={[15]}>
                 <Col sm={12} span={24}>
                   <Form.Item
                     label="Mã nhân viên (AM/BDM)"
@@ -90,7 +89,7 @@ function QuyTrinhXuLyPage() {
               title={<FormTitle>Thông tin khách hàng</FormTitle>}
               className="form-card"
             >
-              <Row>
+              <Row gutter={[15]}>
                 <Col sm={12} span={24}>
                   <Form.Item
                     label="Tình trạng khách hàng"
@@ -143,7 +142,7 @@ function QuyTrinhXuLyPage() {
               title={<FormTitle>Thông tin đối thủ</FormTitle>}
               className="form-card"
             >
-              <Row>
+              <Row gutter={[15]}>
                 <Col sm={12} span={24}>
                   <Form.Item label="Đối thủ" name="doi_thu" required>
                     <SelectOptions options={doi_thu} />
@@ -200,7 +199,7 @@ function QuyTrinhXuLyPage() {
               title={<FormTitle>Thông tin đề xuất</FormTitle>}
               className="form-card"
             >
-              <Row>
+              <Row gutter={[15]}>
                 <Col sm={12} span={24}>
                   <Form.Item
                     label="Tỷ trọng đơn Nội Vùng Liên Vùng"
@@ -222,7 +221,7 @@ function QuyTrinhXuLyPage() {
                     label="Ngày bắt đầu tính SL cam kết"
                     name="ngay_bat_dau_tinh_sl_cam_ket"
                   >
-                    <DatePicker/>
+                    <DatePicker />
                   </Form.Item>
                 </Col>
               </Row>
