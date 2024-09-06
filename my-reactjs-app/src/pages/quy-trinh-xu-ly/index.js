@@ -18,10 +18,26 @@ import {
   loai_gia_dang_di_theo_khoi_luong,
   chinh_sach_phu_phi,
 } from "../../constants/metadata";
+import ticketServices from "../../services/ticketServices";
+import { useAppCtx } from "../../providers/app.provider";
+import { useState } from "react";
 
 function QuyTrinhXuLyPage() {
+  const { Toast } = useAppCtx();
+  const [isLoading, setIsLoading] = useState(false);
+
   function handleSubmitForm(values) {
-    console.log("values ", values);
+    setIsLoading(true);
+    ticketServices.submitAsync(values, (response) => {
+      const { success, message } = response;
+      if (success) {
+        Toast.success({ message: "Gửi ticket thành công" });
+      } else {
+        Toast.error({ message: "Gửi yêu cầu thất bại!" });
+      }
+
+      setIsLoading(false);
+    });
   }
 
   return (
@@ -41,7 +57,7 @@ function QuyTrinhXuLyPage() {
                   <SelectOptions
                     options={nhom_quy_trinh}
                     titleField="name"
-                    valueField="command"
+                    valueField="name"
                     autoSelectDefaultValue
                   />
                 </Form.Item>
@@ -51,7 +67,7 @@ function QuyTrinhXuLyPage() {
                   <SelectOptions
                     options={quy_trinh}
                     titleField="name"
-                    valueField="_id"
+                    valueField="name"
                     disabled
                     autoSelectDefaultValue
                   />
@@ -221,7 +237,7 @@ function QuyTrinhXuLyPage() {
                     label="Ngày bắt đầu tính SL cam kết"
                     name="ngay_bat_dau_tinh_sl_cam_ket"
                   >
-                    <DatePicker />
+                    <DatePicker format={"DD/MM/YYYY"} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -234,7 +250,7 @@ function QuyTrinhXuLyPage() {
                 <Button>Hủy</Button>
               </Col>
               <Col>
-                <Button htmlType="submit" type="primary">
+                <Button htmlType="submit" type="primary" loading={isLoading}>
                   Hoàn tất
                 </Button>
               </Col>

@@ -1,0 +1,40 @@
+{
+  "nhom_quy_trinh": "quy_trinh_ban_hang",
+  "quy_trinh": "QUY TRÌNH ĐỀ XUẤT GIÁ ƯU ĐÃI ĐẶC BIỆT",
+  "ma_nhan_vien": "TuVan",
+  "de_xuat_gia_ban_voi_loai_dich_vu": "Hàng Nhẹ",
+  "tinh_trang_khach_hang": "Nguy cơ rời bỏ",
+  "ma_khach_hang": "Customer001",
+  "link_phieu_cai_gia": "google.com",
+  "mo_ta_ly_do_de_xuat": "Shop hiện tại bị đối thủ đạp giá thấp hơn hiện tại nên cần bảng giá thấp hơn để giữ chân.",
+  "xac_minh_khach_hang": [
+    {
+      "dia_chi_cua_hang": "Tô ký hồ chí minh",
+      "dia_chi_cua_hang_la_noi_lay_hang": true,
+      "dia_chi_lay_hang": "không có"
+    }
+  ],
+  "doi_thu": "VTP",
+  "loai_gia_dang_di_theo_tuyen": "a. Giá đang đi theo Nội Tỉnh",
+  "loai_gia_dang_di_theo_khoi_luong": "a. 0.3KG",
+  "tinh_trang_kinh_doanh": [
+    {
+      "khach_ban_si_le": true,
+      "nganh_hang": "Phụ kiện thời trang",
+      "so_nam_ban_hang": "Dưới 3 tháng",
+      "so_nhan_vien_shop": "Ít hơn 5 NV"
+    }
+  ],
+  "thong_tin_tat_ca_cac_kenh_ban_hang": [
+    {
+      "kenh_ban_hang_online": "Facebook",
+      "link_kenh_ban_hang": "tiktok.com",
+      "luot_theo_doi_hoac_thich_kenh": "< 1,000 Theo dõi/Thích",
+      "co_chay_quang_cao_khong": "Có",
+      "co_livestream_ban_hang_khong": "Có"
+    }
+  ],
+  "ty_trong_don_noi_vung_lien_vung": "Nội Vùng 20% | Liên Vùng 80%",
+  "chinh_sach_phu_phi": "Free 100% (Hoàn) & 30% (Giao lại|GT1P)",
+  "ngay_bat_dau_tinh_sl_cam_ket": "2024-09-06T01:44:46.800Z"
+}
