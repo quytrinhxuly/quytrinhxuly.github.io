@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Upload, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { env } from "../env";
+import authServices from "../services/authServices";
 
 // returnField: filename | fileUrl | fileId
 const UploadButton = (props) => {
@@ -45,6 +46,7 @@ const UploadButton = (props) => {
           const response = await fetch(url, {
             method: "POST",
             body: JSON.stringify({
+              authToken: authServices.getToken(),
               fileName: file.name,
               mimeType: file.type,
               content: [...new Int8Array(e.target.result)],

@@ -1,114 +1,201 @@
-import {
-  AlipayOutlined,
-  LockOutlined,
-  TaobaoOutlined,
-  UserOutlined,
-  WeiboOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import {
   LoginFormPage,
   ProConfigProvider,
-  ProFormCaptcha,
-  ProFormCheckbox,
   ProFormText,
 } from "@ant-design/pro-components";
-import { Button, Divider, Space, Tabs, message, theme } from "antd";
+import { theme } from "antd";
 import authServices from "../../services/authServices";
 import "./style.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppCtx } from "../../providers/app.provider";
 
 const Page = () => {
+  const navigate = useNavigate();
+  const { Toast } = useAppCtx();
   const { token } = theme.useToken();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formMode, setFormMode] = useState("login"); //forgot_password | login
+
   const handleLogin = (values) => {
-    authServices.loginAsync(values);
+    setIsLoading(true);
+
+    if (formMode === "forgot_password") {
+      authServices.resetPasswordAsync(values, (success) => {
+        setIsLoading(false);
+        if (success) {
+          Toast.success({
+            message: "Đã gửi mật khẩu mới qua địa chỉ email của bạn.",
+          });
+          setFormMode("login");
+        } else {
+          Toast.error({
+            message: "Thông tin yêu cầu cấp lại mật khẩu không đúng!",
+          });
+        }
+      });
+    } else {
+      authServices.loginAsync(values, (success) => {
+        setIsLoading(false);
+        if (success) {
+          navigate("/");
+        } else {
+          Toast.error({ message: "Tài khoản hoặc mật khẩu không đúng!" });
+        }
+      });
+    }
   };
 
   return (
-    <div
-      className="login-page"
-      style={{
-        backgroundColor: "white",
-        height: "100vh",
-      }}
-    >
-      <LoginFormPage
-        className="login-form"
-        onFinish={handleLogin}
-        backgroundImageUrl="https://mdn.alipayobjects.com/huamei_gcee1x/afts/img/A*y0ZTS6WLwvgAAAAAAAAAAAAADml6AQ/fmt.webp"
-        backgroundVideoUrl="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
-        title="ĐĂNG NHẬP"
-        containerStyle={{
-          backgroundColor: "rgba(0, 0, 0,0.65)",
-          backdropFilter: "blur(4px)",
-        }}
-        submitter={{
-          searchConfig: { submitText: "Đăng nhập" },
+    <div>
+      <div
+        className="login-page"
+        style={{
+          backgroundColor: "white",
+          height: "100vh",
         }}
       >
-        <div
-          style={{
-            height: 20,
+        <LoginFormPage
+          loading={isLoading}
+          className="login-form"
+          onFinish={handleLogin}
+          backgroundImageUrl="assets/fmt.webp"
+          backgroundVideoUrl="assets/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr.mp4"
+          title={formMode === "forgot_password" ? "Quên mật khẩu" : "Đăng nhập"}
+          containerStyle={{
+            backgroundColor: "rgba(0, 0, 0,0.65)",
+            backdropFilter: "blur(4px)",
           }}
-        ></div>
-        <ProFormText
-          name="username"
-          fieldProps={{
-            size: "large",
-            prefix: (
-              <UserOutlined
-                style={{
-                  color: token.colorText,
-                }}
-                className={"prefixIcon"}
-              />
-            ),
-          }}
-          placeholder={"Tài khoản"}
-          rules={[
-            {
-              required: true,
-              message: "Vui lòng nhập tài khoản",
+          submitter={{
+            searchConfig: {
+              submitText:
+                formMode === "forgot_password"
+                  ? "Cấp lại mật khẩu"
+                  : "Đăng nhập",
             },
-          ]}
-        />
-        <ProFormText.Password
-          name="password"
-          fieldProps={{
-            size: "large",
-            prefix: (
-              <LockOutlined
-                style={{
-                  color: token.colorText,
-                }}
-                className={"prefixIcon"}
-              />
-            ),
-          }}
-          placeholder={"Mật khẩu"}
-          rules={[
-            {
-              required: true,
-              message: "Vui lòng nhập mật khẩu !",
-            },
-          ]}
-        />
-
-        <div
-          style={{
-            marginBlockEnd: 24,
           }}
         >
-          <ProFormCheckbox noStyle name="autoLogin">
-            Ghi nhớ tài khoản
-          </ProFormCheckbox>
-          <a
+          <div
             style={{
-              float: "right",
+              height: 20,
             }}
-          >
-            Quên mật khẩu
-          </a>
-        </div>
-      </LoginFormPage>
+          ></div>
+
+          {formMode === "login" && (
+            <>
+              <ProFormText
+                name="username"
+                fieldProps={{
+                  size: "large",
+                  prefix: (
+                    <UserOutlined
+                      style={{
+                        color: token.colorText,
+                      }}
+                      className={"prefixIcon"}
+                    />
+                  ),
+                }}
+                placeholder={"Tài khoản"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập tài khoản",
+                  },
+                ]}
+              />
+              <ProFormText.Password
+                name="password"
+                fieldProps={{
+                  size: "large",
+                  prefix: (
+                    <LockOutlined
+                      style={{
+                        color: token.colorText,
+                      }}
+                      className={"prefixIcon"}
+                    />
+                  ),
+                }}
+                placeholder={"Mật khẩu"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập mật khẩu !",
+                  },
+                ]}
+              />
+
+              <a
+                style={{
+                  float: "right",
+                  marginBottom: "15px",
+                }}
+                onClick={() => setFormMode("forgot_password")}
+              >
+                Quên mật khẩu
+              </a>
+            </>
+          )}
+
+          {formMode === "forgot_password" && (
+            <>
+              <ProFormText
+                name="username"
+                fieldProps={{
+                  size: "large",
+                  prefix: (
+                    <UserOutlined
+                      style={{
+                        color: token.colorText,
+                      }}
+                      className={"prefixIcon"}
+                    />
+                  ),
+                }}
+                placeholder={"Tài khoản"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập tài khoản",
+                  },
+                ]}
+              />
+              <ProFormText
+                name="email"
+                fieldProps={{
+                  size: "large",
+                  prefix: (
+                    <UserOutlined
+                      style={{
+                        color: token.colorText,
+                      }}
+                      className={"prefixIcon"}
+                    />
+                  ),
+                }}
+                placeholder={"Địa chỉ email"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập địa chỉ email",
+                  },
+                ]}
+              />
+              <a
+                style={{
+                  float: "right",
+                  marginBottom: "15px",
+                }}
+                onClick={() => setFormMode("login")}
+              >
+                Quay lại đăng nhập
+              </a>
+            </>
+          )}
+        </LoginFormPage>
+      </div>
     </div>
   );
 };

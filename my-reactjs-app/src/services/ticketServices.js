@@ -1,6 +1,7 @@
 // Example usage in a React component or any JavaScript file
 import api from "../api/AxiosInstance"; // Import the configured Axios instance
 import { generateUUID } from "../utils/index";
+import authServices from "./authServices";
 
 const ticketServices = {
   getAsync: async () => {
@@ -82,6 +83,7 @@ const ticketServices = {
           }) ?? [];
 
       const payload = {
+        authToken: authServices.getToken(),
         sheets: [
           "QUY_TRINH",
           "XAC_MINH_KHACH_HANG",

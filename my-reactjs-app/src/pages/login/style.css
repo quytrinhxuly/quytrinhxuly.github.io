@@ -8,4 +8,6 @@
 .login-page .ant-pro-form-login-page-left .ant-pro-form-login-page-container {
     background-color: unset !important;
     background-image: unset;
+    box-shadow: unset;
+    backdrop-filter: unset !important;
 }

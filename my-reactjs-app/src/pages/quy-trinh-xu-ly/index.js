@@ -25,13 +25,12 @@ import { useState } from "react";
 function QuyTrinhXuLyPage() {
   const { Toast } = useAppCtx();
   const [isLoading, setIsLoading] = useState(false);
-
   const [form] = Form.useForm();
 
   function handleSubmitForm(values) {
     setIsLoading(true);
     ticketServices.submitAsync(values, (response) => {
-      const { success, message } = response;
+      const { success } = response;
       if (success) {
         Toast.success({ message: "Gửi ticket thành công" });
       } else {
