@@ -3,9 +3,9 @@ const Configs = {
   ACCOUNT_FILE_ID: "10wkXYYNX3ZbNwFNZ8DfPANeQ1OjuyJuli53wdoD1bDU",
   QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
   IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
-  RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/reset-password",
-  TELEGRAM_BOT_TOKEN: "",
-  TELEGRAM_AUDIT_GROUP_ID: ""
+  RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
+  TELEGRAM_BOT_TOKEN: "7164755770:AAHtBXyQySPAoagTx2_tgkx5zG6I76umrdY",
+  TELEGRAM_AUDIT_GROUP_ID: "-4100993352"
 }
 
 function doGet(request) {
@@ -153,7 +153,7 @@ function handleResetPassword(payload) {
 
   sendEmailResetPassword(email, tokenResetPassword);
 
-  sendNotificationToTelegram(payload, "reset_password");
+  sendNotificationToTelegram(username + "_" + email, "reset_password");
 
   return OkResult("Đã gửi email đặt lại mật khẩu");
 }
