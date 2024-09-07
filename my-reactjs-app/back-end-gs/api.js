@@ -4,8 +4,8 @@ const Configs = {
   QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
   IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
-  TELEGRAM_BOT_TOKEN: "7164755770:AAHtBXyQySPAoagTx2_tgkx5zG6I76umrdY",
-  TELEGRAM_AUDIT_GROUP_ID: "-4100993352"
+  // TELEGRAM_BOT_TOKEN: "7164755770:AAHtBXyQySPAoagTx2_tgkx5zG6I76umrdY",
+  // TELEGRAM_AUDIT_GROUP_ID: "-4100993352",
 }
 
 function doGet(request) {
@@ -329,5 +329,59 @@ function findAccountAndUpdateLastLogin(username, password) {
 
   return null;
 }
+
+const SettingKey = {
+  TELEGRAM_BOT_TOKEN: "TELEGRAM_BOT_TOKEN",
+  TELEGRAM_GROUP_ID: "TELEGRAM_GROUP_ID",
+}
+
+function getSettingByKey(key) {
+  const spreadsheet = SpreadsheetApp.openById(Configs.ACCOUNT_FILE_ID);
+  const sheet = spreadsheet.getSheetByName("SETTINGS");
+  const data = sheet.getDataRange().getValues();
+
+  // Loop through the rows to find the matching username and email
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][0] != key) {
+      continue;
+    }
+
+    if (data[i][0] == key) {
+      return data[i];
+    }
+  }
+
+  return null;
+}
+
+/**
+ * data: is request data
+ * request types: submit_ticket | auth | reset_password | update_password
+ */
+function sendNotificationToTelegram(data, requestType) {
+  const groupId = getSettingByKey(SettingKey.TELEGRAM_GROUP_ID);
+  const botToken = getSettingByKey(SettingKey.TELEGRAM_BOT_TOKEN);
+  const telegramService = new TelegramService(groupId, botToken);
+  if (requestType == "auth") {
+    telegramService.sendMessage(data + " đăng nhập.");
+  }
+
+  if (requestType == "reset_password") {
+    telegramService.sendMessage(data + " yêu cầu thay đổi mật khẩu.");
+  }
+
+  if (requestType == "update_password") {
+    telegramService.sendMessage(data + " đã cập nhật mật khẩu.");
+  }
+
+  if (requestType == "submit_ticket") {
+    telegramService.sendMessage(JSON.stringify(data) + " đã gửi 1 ticket.");
+  }
+}
+
+
+
+
+
 
 
