@@ -19,6 +19,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "clean:target": "rimraf ./../docs",
+    "copy:build": "robocopy build ./../docs /mir",
+    "release": "yarn build && yarn clean:target && yarn copy:build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
