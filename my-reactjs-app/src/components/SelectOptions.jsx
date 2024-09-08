@@ -8,6 +8,7 @@ export default function SelectOptions(props) {
     value,
     titleField = "name",
     valueField = "value",
+    disabledField = "status",
     disabled,
     autoSelectDefaultValue,
   } = props;
@@ -15,12 +16,18 @@ export default function SelectOptions(props) {
     return {
       value: i[valueField],
       label: i[titleField],
+      disabled: i[disabledField] == "inactive" ? true : false,
     };
   });
 
   useEffect(() => {
-    if (autoSelectDefaultValue && _options.length > 0) {
-      const _defaultValue = _options[0]["value"];
+    if (
+      autoSelectDefaultValue &&
+      _options.filter((i) => i["disabled"] == false).length > 0
+    ) {
+      const _defaultValue = _options.filter((i) => i["disabled"] == false)[0][
+        "value"
+      ];
       onChange && onChange(_defaultValue);
     }
   }, [autoSelectDefaultValue]);

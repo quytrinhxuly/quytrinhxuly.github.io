@@ -114,11 +114,15 @@ const ticketServices = {
               formValues["loai_gia_dang_di_theo_khoi_luong"] ?? "",
               formValues["man_hinh_san_luong_doanh_thu_don_ben_doi_thu"] ?? "",
 
+              formValues["san_luong_cam_ket"] ?? "",
+              formValues["phan_khuc_khoi_luong"] ?? "",
               formValues["ty_trong_don_noi_vung_lien_vung"] ?? "",
               formValues["chinh_sach_phu_phi"] ?? "",
               formValues["ngay_bat_dau_tinh_sl_cam_ket"]?.format(
                 "DD/MM/YYYY"
               ) ?? "",
+              formValues["doanh_thu_hang_nang_cam_ket"] ?? "",
+              formValues["de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg"] ?? "",
 
               createdDate,
               id,

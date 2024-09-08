@@ -72,8 +72,8 @@ export default function FormXacMinhKhachHang(props) {
           <Form.Item key={record.stt} name={[name, record.stt - 1, "dia_chi_cua_hang_la_noi_lay_hang"]}>
             <Radio.Group>
               <Space direction="vertical">
-                <Radio value={true}>Đúng</Radio>
-                <Radio value={false}>Không</Radio>
+                <Radio value={"Đúng"}>Đúng</Radio>
+                <Radio value={"Không"}>Không</Radio>
               </Space>
             </Radio.Group>
           </Form.Item>

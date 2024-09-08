@@ -17,6 +17,10 @@ import {
   loai_gia_dang_di_theo_tuyen,
   loai_gia_dang_di_theo_khoi_luong,
   chinh_sach_phu_phi,
+  san_luong_cam_ket,
+  phan_khuc_khoi_luong,
+  doanh_thu_hang_nang_cam_ket,
+  de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg,
 } from "../../constants/metadata";
 import ticketServices from "../../services/ticketServices";
 import { useAppCtx } from "../../providers/app.provider";
@@ -27,15 +31,13 @@ function QuyTrinhXuLyPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [tinh_trang_khach_hang_selected, setTinh_trang_khach_hang_selected] =
     useState("");
+  const [gia_ban_loai_dich_vu, setGia_ban_loai_dich_vu] = useState("");
   const [form] = Form.useForm();
   const default_tinh_trang_khach_hang = "Chưa sử dụng";
 
   useEffect(() => {
-    console.log(
-      "tinh_trang_khach_hang_selected ",
-      tinh_trang_khach_hang_selected
-    );
-  }, [tinh_trang_khach_hang_selected]);
+    console.log("gia_ban_loai_dich_vu ", gia_ban_loai_dich_vu);
+  }, [gia_ban_loai_dich_vu]);
 
   function handleSubmitForm(values) {
     setIsLoading(true);
@@ -76,7 +78,6 @@ function QuyTrinhXuLyPage() {
                     options={nhom_quy_trinh}
                     titleField="name"
                     valueField="name"
-                    disabled
                     autoSelectDefaultValue
                   />
                 </Form.Item>
@@ -87,7 +88,6 @@ function QuyTrinhXuLyPage() {
                     options={quy_trinh}
                     titleField="name"
                     valueField="name"
-                    disabled
                     autoSelectDefaultValue
                   />
                 </Form.Item>
@@ -126,7 +126,10 @@ function QuyTrinhXuLyPage() {
                       },
                     ]}
                   >
-                    <SelectOptions options={de_xuat_gia_ban_voi_loai_dich_vu} />
+                    <SelectOptions
+                      options={de_xuat_gia_ban_voi_loai_dich_vu}
+                      onChange={setGia_ban_loai_dich_vu}
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -321,10 +324,51 @@ function QuyTrinhXuLyPage() {
               className="form-card"
             >
               <Row gutter={[15]}>
+                {gia_ban_loai_dich_vu == "Hàng Nhẹ" && (
+                  <>
+                    <Col sm={12} span={24}>
+                      <Form.Item
+                        label="Sản lượng cam kết (Đơn/Tháng)"
+                        name="san_luong_cam_ket"
+                        required
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn giá trị",
+                          },
+                        ]}
+                      >
+                        <SelectOptions options={san_luong_cam_ket} />
+                      </Form.Item>
+                    </Col>
+                    <Col sm={12} span={24}>
+                      <Form.Item
+                        label="Phân khúc khối lượng"
+                        name="phan_khuc_khoi_luong"
+                        required
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn giá trị",
+                          },
+                        ]}
+                      >
+                        <SelectOptions options={phan_khuc_khoi_luong} />
+                      </Form.Item>
+                    </Col>
+                  </>
+                )}
                 <Col sm={12} span={24}>
                   <Form.Item
                     label="Tỷ trọng đơn Nội Vùng Liên Vùng"
                     name="ty_trong_don_noi_vung_lien_vung"
+                    required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị",
+                      },
+                    ]}
                   >
                     <SelectOptions options={ty_trong_don_noi_vung_lien_vung} />
                   </Form.Item>
@@ -333,6 +377,13 @@ function QuyTrinhXuLyPage() {
                   <Form.Item
                     label="Chính sách phụ phí"
                     name="chinh_sach_phu_phi"
+                    required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị",
+                      },
+                    ]}
                   >
                     <SelectOptions options={chinh_sach_phu_phi} />
                   </Form.Item>
@@ -341,10 +392,56 @@ function QuyTrinhXuLyPage() {
                   <Form.Item
                     label="Ngày bắt đầu tính SL cam kết"
                     name="ngay_bat_dau_tinh_sl_cam_ket"
+                    required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị",
+                      },
+                    ]}
                   >
                     <DatePicker format={"DD/MM/YYYY"} />
                   </Form.Item>
                 </Col>
+
+                {gia_ban_loai_dich_vu == "Hàng Nặng" && (
+                  <>
+                    <Col sm={12} span={24}>
+                      <Form.Item
+                        label="Doanh thu hàng Nặng cam kết"
+                        name="doanh_thu_hang_nang_cam_ket"
+                        required
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn giá trị",
+                          },
+                        ]}
+                      >
+                        <SelectOptions options={doanh_thu_hang_nang_cam_ket} />
+                      </Form.Item>
+                    </Col>
+                    <Col sm={12} span={24}>
+                      <Form.Item
+                        label="Đề xuất giá bán tính trên 1 KG (Bảng giá tối thiểu 20KG)"
+                        name="de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg"
+                        required
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn giá trị",
+                          },
+                        ]}
+                      >
+                        <SelectOptions
+                          options={
+                            de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg
+                          }
+                        />
+                      </Form.Item>
+                    </Col>
+                  </>
+                )}
               </Row>
             </Card>
             <Row
