@@ -98,22 +98,33 @@ const ticketServices = {
         sheetData: {
           QUY_TRINH: [
             [
-              parentId,
-              formValues["nhom_quy_trinh"] ?? "",
-              formValues["quy_trinh"] ?? "",
+              parentId,//0
+
+              formValues["nhom_quy_trinh"] ?? "", // 1
+              formValues["quy_trinh"] ?? "", // 2
+
+              // Thông tin người đề xuất
               formValues["ma_nhan_vien"] ?? "",
               formValues["de_xuat_gia_ban_voi_loai_dich_vu"] ?? "",
+              formValues["hinh_thuc_dang_ky"] ?? "", // new
+
+              // Thông tin khách hàng
               formValues["tinh_trang_khach_hang"] ?? "",
               formValues["ma_khach_hang"] ?? "",
-              formValues["san_luong_thuc_te_trung_binh_3_thang_gan_nhat"] ?? "",
               formValues["link_phieu_cai_gia"] ?? "",
               formValues["mo_ta_ly_do_de_xuat"] ?? "",
 
+              //formValues["san_luong_thuc_te_trung_binh_3_thang_gan_nhat"] ?? "",
+
+              // Thông tin đối thủ
               formValues["doi_thu"] ?? "",
+              formValues["san_luong_dang_di"] ?? "",
               formValues["loai_gia_dang_di_theo_tuyen"] ?? "",
               formValues["loai_gia_dang_di_theo_khoi_luong"] ?? "",
               formValues["man_hinh_san_luong_doanh_thu_don_ben_doi_thu"] ?? "",
+              formValues["doanh_thu_hang_nang_dang_di_ben_doi_thu"] ?? "",
 
+              // Thông tin đề xuất
               formValues["san_luong_cam_ket"] ?? "",
               formValues["phan_khuc_khoi_luong"] ?? "",
               formValues["ty_trong_don_noi_vung_lien_vung"] ?? "",
@@ -121,7 +132,6 @@ const ticketServices = {
               formValues["ngay_bat_dau_tinh_sl_cam_ket"]?.format(
                 "DD/MM/YYYY"
               ) ?? "",
-              formValues["doanh_thu_hang_nang_cam_ket"] ?? "",
               formValues["de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg"] ?? "",
 
               createdDate,

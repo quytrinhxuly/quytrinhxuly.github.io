@@ -21,6 +21,10 @@ import {
   phan_khuc_khoi_luong,
   doanh_thu_hang_nang_cam_ket,
   de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg,
+  hinh_thuc_dang_ky,
+  san_luong_dang_di,
+  gia_ban_dang_di,
+  doanh_thu_hang_nang_dang_di_ben_doi_thu,
 } from "../../constants/metadata";
 import ticketServices from "../../services/ticketServices";
 import { useAppCtx } from "../../providers/app.provider";
@@ -130,6 +134,21 @@ function QuyTrinhXuLyPage() {
                       options={de_xuat_gia_ban_voi_loai_dich_vu}
                       onChange={setGia_ban_loai_dich_vu}
                     />
+                  </Form.Item>
+                </Col>
+                <Col sm={12} span={24}>
+                  <Form.Item
+                    label="Hình thức đăng ký"
+                    name="hinh_thuc_dang_ky"
+                    required
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng chọn giá trị!",
+                      },
+                    ]}
+                  >
+                    <SelectOptions options={hinh_thuc_dang_ky} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -255,6 +274,24 @@ function QuyTrinhXuLyPage() {
                   </Form.Item>
                 </Col>
 
+                {gia_ban_loai_dich_vu == "Hàng Nhẹ" && (
+                  <Col sm={12} span={24}>
+                    <Form.Item
+                      label="Sản lượng đang đi"
+                      name="san_luong_dang_di"
+                      required
+                      rules={[
+                        {
+                          required: true,
+                          message: "Vui lòng chọn giá trị!",
+                        },
+                      ]}
+                    >
+                      <SelectOptions options={san_luong_dang_di} />
+                    </Form.Item>
+                  </Col>
+                )}
+
                 <Col sm={12} span={24}>
                   <Form.Item
                     label="Loại giá đang đi theo Tuyến"
@@ -302,6 +339,26 @@ function QuyTrinhXuLyPage() {
                     <UploadButton />
                   </Form.Item>
                 </Col>
+
+                {gia_ban_loai_dich_vu == "Hàng Nặng" && (
+                  <Col sm={12} span={24}>
+                    <Form.Item
+                      label="Doanh thu hàng nặng đang đi bên đối thủ"
+                      name="doanh_thu_hang_nang_dang_di_ben_doi_thu"
+                      required
+                      rules={[
+                        {
+                          required: true,
+                          message: "Vui lòng chọn giá trị!",
+                        },
+                      ]}
+                    >
+                      <SelectOptions
+                        options={doanh_thu_hang_nang_dang_di_ben_doi_thu}
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
               </Row>
             </Card>
 
@@ -377,13 +434,6 @@ function QuyTrinhXuLyPage() {
                   <Form.Item
                     label="Chính sách phụ phí"
                     name="chinh_sach_phu_phi"
-                    required
-                    rules={[
-                      {
-                        required: true,
-                        message: "Vui lòng chọn giá trị",
-                      },
-                    ]}
                   >
                     <SelectOptions options={chinh_sach_phu_phi} />
                   </Form.Item>
@@ -421,6 +471,7 @@ function QuyTrinhXuLyPage() {
                         <SelectOptions options={doanh_thu_hang_nang_cam_ket} />
                       </Form.Item>
                     </Col>
+
                     <Col sm={12} span={24}>
                       <Form.Item
                         label="Đề xuất giá bán tính trên 1 KG (Bảng giá tối thiểu 20KG)"
