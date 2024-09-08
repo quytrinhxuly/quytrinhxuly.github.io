@@ -3,8 +3,6 @@ const Configs = {
   QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
   IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
-  // TELEGRAM_BOT_TOKEN: "7164755770:AAHtBXyQySPAoagTx2_tgkx5zG6I76umrdY",
-  // TELEGRAM_AUDIT_GROUP_ID: "-4100993352",
 };
 
 function doGet(request) {
@@ -44,6 +42,16 @@ function doPost(e) {
       const verify = validateBearerToken(authToken);
       if (verify.success) {
         return handleUploadFile(e);
+      } else {
+        return ErrorResult(verify.message);
+      }
+    }
+
+    if (endpoint == "list") {
+      const authToken = payload["authToken"];
+      const verify = validateBearerToken(authToken);
+      if (verify.success) {
+        return handleGetListTicket(payload);
       } else {
         return ErrorResult(verify.message);
       }
@@ -173,6 +181,114 @@ function handleUpdateNewPassword(payload) {
   } catch (err) {
     return ErrorResult("Cập nhật mật khẩu thất bại!");
   }
+}
+
+// new
+function handleGetListTicket(payload) {
+  const { staffCode, page = 1, pageSize = 10 } = payload;
+
+  const spreadsheet = SpreadsheetApp.openById(Configs.QUY_TRINH_XU_LY_FILE_ID);
+  const dataValues = getDataValues(spreadsheet, "QUY_TRINH");
+  const ds_quy_trinh = dataValues
+    .filter(i => i[22] == staffCode)
+    .map(i => {
+      return {
+        id: i[0],
+        nhom_quy_trinh: i[1],
+        quy_trinh: i[2],
+        ma_nhan_vien: t[3],
+        de_xuat_gia_ban_voi_loai_dich_vu: t[4],
+        tinh_trang_khach_hang: t[5],
+        ma_khach_hang: t[6],
+        san_luong_thuc_te_trung_binh_3_thang_gan_nhat: t[7],
+        link_phieu_cai_gia: t[8],
+        mo_ta_ly_do_de_xuat: t[9],
+        doi_thu: t[10],
+        loai_gia_dang_di_theo_tuyen: t[11],
+        loai_gia_dang_di_theo_khoi_luong: t[12],
+        man_hinh_san_luong_doanh_thu_don_ben_doi_thu: t[13],
+        san_luong_cam_ket: t[14],
+        phan_khuc_khoi_luong: i[15],
+        ty_trong_don_noi_vung_lien_vung: i[16],
+        chinh_sach_phu_phi: i[17],
+        ngay_bat_dau_tinh_sl_cam_ket: i[18],
+        doanh_thu_hang_nang_cam_ket: i[19],
+        de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg: i[20],
+        ngay_tao: i[21],
+      }
+    });
+
+  const quyTrinhIds = ds_quy_trinh.map(i => i["id"]);
+
+  const dataXacMinhKhachHang = getDataValues(spreadsheet, "XAC_MINH_KHACH_HANG");
+  const dsXacMinhKhachHang = dataXacMinhKhachHang
+    .filter(i => quyTrinhIds.include(i[1]))
+    ?.map(i => {
+      return {
+        parentId: i[1],
+        stt: i[2],
+        dia_chi_cua_hang: i[3],
+        anh_checkin_tai_cua_hang: i[4],
+        anh_san_pham_kinh_doanh: i[5],
+        dia_chi_cua_hang_la_noi_lay_hang: i[6],
+        dia_chi_lay_hang: i[7],
+        anh_checkin_tai_noi_lay_hang: i[8],
+      }
+    });
+
+  const dataTrangThaiKinhDoanh = getDataValues(spreadsheet, "TINH_TRANG_KINH_DOANH");
+  const ds_TrangThaiKinhDoanh = dataTrangThaiKinhDoanh
+    .filter(i => quyTrinhIds.include(i[1]))
+    ?.map(i => {
+      return {
+        parentId: i[1],
+        stt: i[2],
+        khach_ban_si_le: i[3],
+        nganh_hang: i[4],
+        thang_cao_diem_ban_duoc_hang: i[5],
+        so_nam_ban_hang: i[6],
+        so_nhan_vien_shop: i[7],
+      }
+    });
+
+  const data_ThonTinKenhBanHang = getDataValues(spreadsheet, "THONG_TIN_KENH_BAN_HANG");
+  const ds_ThonTinKenhBanHang = data_ThonTinKenhBanHang
+    .filter(i => quyTrinhIds.include(i[1]))
+    ?.map(i => {
+      return {
+        parentId: i[1],
+        stt: i[2],
+        kenh_ban_hang_online: i[3],
+        link_kenh_ban_hang: i[4],
+        luot_theo_doi_hoac_thich_kenh: i[5],
+        co_chay_quang_cao_khong: i[6],
+        co_livestream_ban_hang_khong: i[7],
+      }
+    });
+
+
+  const response = {
+    quy_trinh: ds_quy_trinh,
+    xac_minh_khach_hang: dsXacMinhKhachHang,
+    trang_thai_kinh_doanh: ds_TrangThaiKinhDoanh,
+    thong_tin_kenh_ban_hang: ds_ThonTinKenhBanHang,
+  }
+
+  return OkResult("ok", response);
+}
+
+function getDataValues(spreadsheet, sheetName) {
+  const sheet = spreadsheet.getSheetByName(sheetName);
+  const lastRow = sheet.getLastRow();
+  const lastColumn = sheet.getLastColumn();
+  if (lastRow <= 1) {
+    return [];
+  }
+
+  const dataRange = sheet.getRange(2, 1, lastRow - 1, lastColumn);
+  const dataValues = dataRange.getValues();
+
+  return dataValues;
 }
 
 // </HANDLERS>
