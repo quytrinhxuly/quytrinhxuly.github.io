@@ -111,10 +111,9 @@ const ticketServices = {
               // Thông tin khách hàng
               formValues["tinh_trang_khach_hang"] ?? "",
               formValues["ma_khach_hang"] ?? "",
+              formValues["san_luong_thuc_te_trung_binh_3_thang_gan_nhat"] ?? "",
               formValues["link_phieu_cai_gia"] ?? "",
               formValues["mo_ta_ly_do_de_xuat"] ?? "",
-
-              //formValues["san_luong_thuc_te_trung_binh_3_thang_gan_nhat"] ?? "",
 
               // Thông tin đối thủ
               formValues["doi_thu"] ?? "",
