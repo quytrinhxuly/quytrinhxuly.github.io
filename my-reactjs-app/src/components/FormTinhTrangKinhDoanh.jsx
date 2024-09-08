@@ -67,8 +67,8 @@ export default function FormTinhTrangKinhDoanh(props) {
           >
             <Radio.Group>
               <Space direction="vertical">
-                <Radio value={true}>Sỉ</Radio>
-                <Radio value={false}>Lẻ</Radio>
+                <Radio value={"Sỉ"}>Sỉ</Radio>
+                <Radio value={"Lẻ"}>Lẻ</Radio>
               </Space>
             </Radio.Group>
           </Form.Item>

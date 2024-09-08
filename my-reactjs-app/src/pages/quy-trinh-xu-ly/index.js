@@ -20,12 +20,22 @@ import {
 } from "../../constants/metadata";
 import ticketServices from "../../services/ticketServices";
 import { useAppCtx } from "../../providers/app.provider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function QuyTrinhXuLyPage() {
   const { Toast } = useAppCtx();
   const [isLoading, setIsLoading] = useState(false);
+  const [tinh_trang_khach_hang_selected, setTinh_trang_khach_hang_selected] =
+    useState("");
   const [form] = Form.useForm();
+  const default_tinh_trang_khach_hang = "Chưa sử dụng";
+
+  useEffect(() => {
+    console.log(
+      "tinh_trang_khach_hang_selected ",
+      tinh_trang_khach_hang_selected
+    );
+  }, [tinh_trang_khach_hang_selected]);
 
   function handleSubmitForm(values) {
     setIsLoading(true);
@@ -33,6 +43,7 @@ function QuyTrinhXuLyPage() {
       const { success } = response;
       if (success) {
         Toast.success({ message: "Gửi ticket thành công" });
+        form.resetFields();
       } else {
         Toast.error({ message: "Gửi yêu cầu thất bại!" });
       }
@@ -42,7 +53,7 @@ function QuyTrinhXuLyPage() {
   }
 
   function formChange(e) {
-    console.log("... ", form.getFieldsValue())
+    console.log("... ", form.getFieldsValue());
   }
 
   return (
@@ -138,7 +149,10 @@ function QuyTrinhXuLyPage() {
                       },
                     ]}
                   >
-                    <SelectOptions options={tinh_trang_khach_hang} />
+                    <SelectOptions
+                      options={tinh_trang_khach_hang}
+                      onChange={setTinh_trang_khach_hang_selected}
+                    />
                   </Form.Item>
                 </Col>
 
@@ -157,6 +171,25 @@ function QuyTrinhXuLyPage() {
                     <Input placeholder="Nhập giá trị" />
                   </Form.Item>
                 </Col>
+
+                {tinh_trang_khach_hang_selected !=
+                  default_tinh_trang_khach_hang && (
+                  <Col sm={12} span={24}>
+                    <Form.Item
+                      label="Sản lượng thực tế trung bình 3 tháng gần nhất"
+                      name="san_luong_thuc_te_trung_binh_3_thang_gan_nhat"
+                      required
+                      rules={[
+                        {
+                          required: true,
+                          message: "Vui lòng nhập giá trị!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Nhập giá trị" />
+                    </Form.Item>
+                  </Col>
+                )}
 
                 <Col sm={12} span={24}>
                   <Form.Item
@@ -319,7 +352,7 @@ function QuyTrinhXuLyPage() {
               style={{ marginTop: "10px", float: "right" }}
             >
               <Col>
-                <Button>Hủy</Button>
+                <Button onClick={() => setIsLoading(false)}>Hủy</Button>
               </Col>
               <Col>
                 <Button htmlType="submit" type="primary" loading={isLoading}>

@@ -9,7 +9,11 @@ const authServices = {
     const { success, data } = result;
     if (success) {
       const { token, user } = data;
-      localStorage.setItem("auth_user", JSON.stringify(user));
+      let loginUser = {
+        ...user,
+        id: values["username"]
+      }
+      localStorage.setItem("auth_user", JSON.stringify(loginUser));
       Cookies.set("auth_token", token, { expires: 1 }); // exprired after 1 day
     } else {
       Cookies.remove("auth_token");

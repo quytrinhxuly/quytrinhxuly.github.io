@@ -1,6 +1,6 @@
 // Example usage in a React component or any JavaScript file
 import api from "../api/AxiosInstance"; // Import the configured Axios instance
-import { generateUUID } from "../utils/index";
+import { formatDate, generateUUID } from "../utils/index";
 import authServices from "./authServices";
 
 const ticketServices = {
@@ -11,6 +11,10 @@ const ticketServices = {
   },
   submitAsync: async (formValues, callback) => {
     try {
+      const loginUser = authServices.getUserSession();
+      const { id, name } = loginUser;
+      const createdDate = formatDate(new Date());
+
       const parentId = generateUUID();
       const list_xac_minh_khach_hang =
         formValues["xac_minh_khach_hang"]
@@ -84,6 +88,7 @@ const ticketServices = {
 
       const payload = {
         authToken: authServices.getToken(),
+        fullname: name,
         sheets: [
           "QUY_TRINH",
           "XAC_MINH_KHACH_HANG",
@@ -100,6 +105,7 @@ const ticketServices = {
               formValues["de_xuat_gia_ban_voi_loai_dich_vu"] ?? "",
               formValues["tinh_trang_khach_hang"] ?? "",
               formValues["ma_khach_hang"] ?? "",
+              formValues["san_luong_thuc_te_trung_binh_3_thang_gan_nhat"] ?? "",
               formValues["link_phieu_cai_gia"] ?? "",
               formValues["mo_ta_ly_do_de_xuat"] ?? "",
 
@@ -113,6 +119,9 @@ const ticketServices = {
               formValues["ngay_bat_dau_tinh_sl_cam_ket"]?.format(
                 "DD/MM/YYYY"
               ) ?? "",
+
+              createdDate,
+              id,
             ],
           ],
           XAC_MINH_KHACH_HANG: list_xac_minh_khach_hang,
@@ -120,6 +129,7 @@ const ticketServices = {
           THONG_TIN_KENH_BAN_HANG: list_thong_tin_tat_ca_cac_kenh_ban_hang,
         },
       };
+
       const response = await api.post("exec?endpoint=submit_ticket", payload);
       callback && callback(response.data);
     } catch (error) {
