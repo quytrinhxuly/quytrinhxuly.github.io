@@ -596,7 +596,7 @@ function sendNotificationToTelegram(data, requestType) {
       const sheetData = data["sheetData"]["QUY_TRINH"][0];
       let messageTemplate = "<b>" +
         sheetData[2] + "</b>\n\n" +
-        "ID: " + sheetData[23] + "\n" +
+        "ID: " + sheetData[24] + "\n" +
         "Họ và tên: " + data["fullname"] + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Thông tin người đề xuất</b>\n" +
@@ -607,20 +607,20 @@ function sendNotificationToTelegram(data, requestType) {
         "<b>Thông tin khách hàng</b>\n" +
         "+ Tình trạng khách hàng: " + sheetData[6] + "\n" +
         "+ Mã khách hàng: " + sheetData[7] + "\n" +
-        //"+ Sản lượng thực tế trung bình 3 tháng gần nhất: " + sheetData[7] + "\n" +
-        "+ Link phiếu cài giá: " + sheetData[8] + "\n" +
-        "+ Mô tả lý do đề xuất: " + sheetData[9] + "\n" +
+        "+ Sản lượng thực tế trung bình 3 tháng gần nhất: " + sheetData[8] + "\n" +
+        "+ Link phiếu cài giá: " + sheetData[9] + "\n" +
+        "+ Mô tả lý do đề xuất: " + sheetData[10] + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Xác minh khách hàng</b>\n" +
         messageXacMinhKhachHang + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Thông tin đối thủ</b>\n" +
-        "+ Đối thủ: " + sheetData[10] + "\n" +
-        "+ Sản lượng đang đi: " + sheetData[11] + "\n" +
-        "+ Loại giá đang đi theo Tuyến: " + sheetData[12] + "\n" +
-        "+ Loại giá đang đi theo Khối lượng: " + sheetData[13] + "\n" +
-        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " + "<a href='" + sheetData[14] + "'>Link ảnh</a>" + "\n" +
-        "+ Doanh thu hàng nặng đang đi bên đối thủ: " + sheetData[15] + "\n" +
+        "+ Đối thủ: " + sheetData[11] + "\n" +
+        "+ Sản lượng đang đi: " + sheetData[12] + "\n" +
+        "+ Loại giá đang đi theo Tuyến: " + sheetData[13] + "\n" +
+        "+ Loại giá đang đi theo Khối lượng: " + sheetData[14] + "\n" +
+        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " + "<a href='" + sheetData[15] + "'>Link ảnh</a>" + "\n" +
+        "+ Doanh thu hàng nặng đang đi bên đối thủ: " + sheetData[16] + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Tình trạng kinh doanh</b>\n" +
         messageTinhTrangKinhDoanh + "\n" +
@@ -630,13 +630,13 @@ function sendNotificationToTelegram(data, requestType) {
         messageThongTinKenhBanHang + "\n" +
         "----------------------------------------------------------------------\n";
       "<b>Thông tin đề xuất</b>\n" +
-        "+ Sản lượng cam kết (Đơn/Tháng): " + sheetData[16] + "\n" +
-        "+ Phân khúc khối lượng: " + sheetData[17] + "\n" +
-        "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[18] + "\n" +
-        "+ Chính sách phụ phí: " + sheetData[19] + "\n" +
-        "+ Ngày bắt đầu tính SL cam kết: " + sheetData[20] + "\n" +
+        "+ Sản lượng cam kết (Đơn/Tháng): " + sheetData[17] + "\n" +
+        "+ Phân khúc khối lượng: " + sheetData[18] + "\n" +
+        "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[19] + "\n" +
+        "+ Chính sách phụ phí: " + sheetData[20] + "\n" +
+        "+ Ngày bắt đầu tính SL cam kết: " + sheetData[21] + "\n" +
         //"+ Doanh thu hàng Nặng cam kết: " + sheetData[19] + "\n" +
-        "+ Đề xuất giá bán tính trên 1KG (Bảng giá tối thiểu 20KG): " + sheetData[21] + "\n";
+        "+ Đề xuất giá bán tính trên 1KG (Bảng giá tối thiểu 20KG): " + sheetData[22] + "\n";
 
       telegramService.sendMessage(messageTemplate);
     }
