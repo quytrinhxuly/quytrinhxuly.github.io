@@ -9,15 +9,16 @@ class TelegramService {
       method: "sendMessage",
       chat_id: this.chatId, // Thay YOUR_CHAT_ID bằng ID của nhóm Telegram của bạn
       text: message,
+      parse_mode: 'HTML'
     };
     const options = {
       method: "post",
-      payload: payload,
+      payload: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
-    UrlFetchApp.fetch(
-      `https://api.telegram.org/bot${this.botToken}/sendMessage`,
-      options
-    );
+    UrlFetchApp.fetch(`https://api.telegram.org/bot${this.botToken}/sendMessage`, options);
   }
 
   sendMessageWithInlineKeyboard(message, buttons) {
@@ -34,9 +35,6 @@ class TelegramService {
       method: "post",
       payload: payload,
     };
-    UrlFetchApp.fetch(
-      `https://api.telegram.org/bot${this.botToken}/sendMessage`,
-      options
-    );
+    UrlFetchApp.fetch(`https://api.telegram.org/bot${this.botToken}/sendMessage`, options);
   }
 }

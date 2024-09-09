@@ -1,18 +1,18 @@
 // PROD
-// const Configs = {
-//   ACCOUNT_FILE_ID: "1cgDNgp4TYM873FR3qonR12IhWs1qH8t_R7ZEvrmixV8",
-//   QUY_TRINH_XU_LY_FILE_ID: "1oNXIeLAJMbHArKi9xPfDRhp-i1wvHZitRxE55Qbz00E",
-//   IMAGE_FOLDER_ID: "1MpqQmeQweKTB3AxMQDU6qmfNnt_m_sbK",
-//   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
-// };
-
-// DEV
 const Configs = {
-  ACCOUNT_FILE_ID: "10wkXYYNX3ZbNwFNZ8DfPANeQ1OjuyJuli53wdoD1bDU",
-  QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
-  IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
+  ACCOUNT_FILE_ID: "1cgDNgp4TYM873FR3qonR12IhWs1qH8t_R7ZEvrmixV8",
+  QUY_TRINH_XU_LY_FILE_ID: "1oNXIeLAJMbHArKi9xPfDRhp-i1wvHZitRxE55Qbz00E",
+  IMAGE_FOLDER_ID: "1MpqQmeQweKTB3AxMQDU6qmfNnt_m_sbK",
   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
 };
+
+// DEV
+// const Configs = {
+//   ACCOUNT_FILE_ID: "10wkXYYNX3ZbNwFNZ8DfPANeQ1OjuyJuli53wdoD1bDU",
+//   QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
+//   IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
+//   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
+// };
 
 function doGet(request) {
   return OkResult(true, "Server running...", request);
@@ -624,19 +624,19 @@ function sendNotificationToTelegram(data, requestType) {
         "----------------------------------------------------------------------\n" +
         "<b>Tình trạng kinh doanh</b>\n" +
         messageTinhTrangKinhDoanh + "\n" +
-        "----------------------------------------------------------------------\n" +
-
-        "<b>Thông tin TẤT CẢ các kênh bán hàng</b>\n" +
-        messageThongTinKenhBanHang + "\n" +
         "----------------------------------------------------------------------\n";
-      "<b>Thông tin đề xuất</b>\n" +
-        "+ Sản lượng cam kết (Đơn/Tháng): " + sheetData[17] + "\n" +
-        "+ Phân khúc khối lượng: " + sheetData[18] + "\n" +
-        "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[19] + "\n" +
-        "+ Chính sách phụ phí: " + sheetData[20] + "\n" +
-        "+ Ngày bắt đầu tính SL cam kết: " + sheetData[21] + "\n" +
-        //"+ Doanh thu hàng Nặng cam kết: " + sheetData[19] + "\n" +
-        "+ Đề xuất giá bán tính trên 1KG (Bảng giá tối thiểu 20KG): " + sheetData[22] + "\n";
+
+        // "<b>Thông tin TẤT CẢ các kênh bán hàng</b>\n" +
+        // messageThongTinKenhBanHang + "\n" +
+        // "----------------------------------------------------------------------\n" +
+        // "<b>Thông tin đề xuất</b>\n" +
+        // "+ Sản lượng cam kết (Đơn/Tháng): " + sheetData[17] + "\n" +
+        // "+ Phân khúc khối lượng: " + sheetData[18] + "\n" +
+        // "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[19] + "\n" +
+        // "+ Chính sách phụ phí: " + sheetData[20] + "\n" +
+        // "+ Ngày bắt đầu tính SL cam kết: " + sheetData[21] + "\n" +
+        // //"+ Doanh thu hàng Nặng cam kết: " + sheetData[19] + "\n" +
+        // "+ Đề xuất giá bán tính trên 1KG (Bảng giá tối thiểu 20KG): " + sheetData[22] + "\n";
 
       telegramService.sendMessage(messageTemplate);
     }
