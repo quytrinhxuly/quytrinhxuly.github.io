@@ -1,18 +1,18 @@
 // PROD
-// const Configs = {
-//   ACCOUNT_FILE_ID: "1cgDNgp4TYM873FR3qonR12IhWs1qH8t_R7ZEvrmixV8",
-//   QUY_TRINH_XU_LY_FILE_ID: "1oNXIeLAJMbHArKi9xPfDRhp-i1wvHZitRxE55Qbz00E",
-//   IMAGE_FOLDER_ID: "1MpqQmeQweKTB3AxMQDU6qmfNnt_m_sbK",
-//   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
-// };
-
-// DEV
 const Configs = {
-  ACCOUNT_FILE_ID: "10wkXYYNX3ZbNwFNZ8DfPANeQ1OjuyJuli53wdoD1bDU",
-  QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
-  IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
+  ACCOUNT_FILE_ID: "1cgDNgp4TYM873FR3qonR12IhWs1qH8t_R7ZEvrmixV8",
+  QUY_TRINH_XU_LY_FILE_ID: "1oNXIeLAJMbHArKi9xPfDRhp-i1wvHZitRxE55Qbz00E",
+  IMAGE_FOLDER_ID: "1MpqQmeQweKTB3AxMQDU6qmfNnt_m_sbK",
   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
 };
+
+// DEV
+// const Configs = {
+//   ACCOUNT_FILE_ID: "10wkXYYNX3ZbNwFNZ8DfPANeQ1OjuyJuli53wdoD1bDU",
+//   QUY_TRINH_XU_LY_FILE_ID: "1mPk1PuPc4Wc9fAXnRSMQHwZCrc1Ac0HLEmfN8YzQc2o",
+//   IMAGE_FOLDER_ID: "1C9usVIi-mzDATFE3XMLz5YC43R_cwvuf",
+//   RESET_PASSWORD_URL: "https://quytrinhxuly.github.io/#/reset-password",
+// };
 
 function doGet(request) {
   return OkResult(true, "Server running...", request);
@@ -518,6 +518,14 @@ function getSettingByKey(key) {
   return null;
 }
 
+function genImageLinkMessage(imageLinks) {
+  const linksArray = imageLinks.split(',');
+  const htmlLinks = linksArray.map((link, index) => `<a href="${link.trim()}">Link ảnh ${index + 1}</a>`);
+  const result = htmlLinks.join(', ');
+
+  return result;
+}
+
 /**
  * data: is request data
  * request types: submit_ticket | auth | reset_password | update_password
@@ -556,11 +564,11 @@ function sendNotificationToTelegram(data, requestType) {
           return `
       + STT: ${data[2]}
       + Địa chỉ cửa hàng: ${data[3]}
-      + Ảnh check-in tại cửa hàng: <a href="${data[4]}">Link ảnh</a>
-      + Ảnh sản phẩm kinh doanh: <a href="${data[5]}">Link ảnh</a>
+      + Ảnh check-in tại cửa hàng: ${genImageLinkMessage(data[4])}
+      + Ảnh sản phẩm kinh doanh: ${genImageLinkMessage(data[5])}
       + Địa chỉ cừa hàng là nơi lấy hàng?: ${data[6]}
       + Địa chỉ lấy hàng?: ${data[7]}
-      + Ảnh check-in tại nơi lấy hàng: <a href="${data[8]}">Link ảnh</a>
+      + Ảnh check-in tại nơi lấy hàng: ${genImageLinkMessage(data[8])}
       `;
         })
         .join("\n");
@@ -619,13 +627,12 @@ function sendNotificationToTelegram(data, requestType) {
         "+ Sản lượng đang đi: " + sheetData[12] + "\n" +
         "+ Loại giá đang đi theo Tuyến: " + sheetData[13] + "\n" +
         "+ Loại giá đang đi theo Khối lượng: " + sheetData[14] + "\n" +
-        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " + "<a href='" + sheetData[15] + "'>Link ảnh</a>" + "\n" +
+        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " +  genImageLinkMessage(data[15]) + "\n" +
         "+ Doanh thu hàng nặng đang đi bên đối thủ: " + sheetData[16] + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Tình trạng kinh doanh</b>\n" +
         messageTinhTrangKinhDoanh + "\n" +
         "----------------------------------------------------------------------\n" +
-
         "<b>Thông tin TẤT CẢ các kênh bán hàng</b>\n" +
         messageThongTinKenhBanHang + "\n" +
         "----------------------------------------------------------------------\n" +
