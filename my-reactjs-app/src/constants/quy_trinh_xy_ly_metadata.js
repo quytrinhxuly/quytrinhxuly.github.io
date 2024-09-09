@@ -1112,8 +1112,8 @@ export const quy_trinh_xy_ly_metadata = [
     value_type: "single_select",
     data: [
       {
-        name: "Free 100% (Hoàn|Giao lại|Khai giá \u003c5 triệu)",
-        value: "Free 100% (Hoàn|Giao lại|Khai giá \u003c5 triệu)",
+        name: "Free 100% (Hoàn|Giao lại|Khai giá nhỏ hơn 5 triệu)",
+        value: "Free 100% (Hoàn|Giao lại|Khai giá nhỏ hơn 5 triệu)",
         type: null,
         file_id: null,
         description: "",

@@ -1,7 +1,7 @@
 import { Button, Form, Input, Radio, Space, Table } from "antd";
 import { DeleteFilled, PlusCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import UploadButton from "./UploadButton";
+import MultipleUploadButton from "./MultipleUploadButton";
 export default function FormXacMinhKhachHang(props) {
   const { name } = props;
   const defaultDataSource = [
@@ -44,7 +44,7 @@ export default function FormXacMinhKhachHang(props) {
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_cua_hang"]}>
-            <UploadButton />
+            <MultipleUploadButton />
           </Form.Item>
         );
       },
@@ -57,7 +57,7 @@ export default function FormXacMinhKhachHang(props) {
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_san_pham_kinh_doanh"]}>
-            <UploadButton />
+            <MultipleUploadButton />
           </Form.Item>
         );
       },
@@ -103,7 +103,7 @@ export default function FormXacMinhKhachHang(props) {
       render: (value, record) => {
         return (
           <Form.Item key={record.stt} name={[name, record.stt - 1, "anh_checkin_tai_noi_lay_hang"]}>
-            <UploadButton />
+            <MultipleUploadButton />
           </Form.Item>
         );
       },

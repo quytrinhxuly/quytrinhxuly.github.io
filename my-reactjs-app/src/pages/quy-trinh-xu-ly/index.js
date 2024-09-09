@@ -4,7 +4,7 @@ import FormTitle from "../../components/FormTitle";
 import FormXacMinhKhachHang from "../../components/FormXacMinhKhachHang";
 import FormTinhTrangKinhDoanh from "../../components/FormTinhTrangKinhDoanh";
 import FormThongTinKenhBanHang from "../../components/FormThongTinKenhBanHang";
-import UploadButton from "../../components/UploadButton";
+import MultipleUploadButton from "../../components/MultipleUploadButton";
 
 import {
   nhom_quy_trinh,
@@ -336,7 +336,7 @@ function QuyTrinhXuLyPage() {
                       },
                     ]}
                   >
-                    <UploadButton />
+                    <MultipleUploadButton />
                   </Form.Item>
                 </Col>
 

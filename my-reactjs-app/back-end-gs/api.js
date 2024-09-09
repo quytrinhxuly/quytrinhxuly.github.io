@@ -628,8 +628,8 @@ function sendNotificationToTelegram(data, requestType) {
 
         "<b>Thông tin TẤT CẢ các kênh bán hàng</b>\n" +
         messageThongTinKenhBanHang + "\n" +
-        "----------------------------------------------------------------------\n";
-      "<b>Thông tin đề xuất</b>\n" +
+        "----------------------------------------------------------------------\n" +
+        "<b>Thông tin đề xuất</b>\n" +
         "+ Sản lượng cam kết (Đơn/Tháng): " + sheetData[17] + "\n" +
         "+ Phân khúc khối lượng: " + sheetData[18] + "\n" +
         "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[19] + "\n" +
