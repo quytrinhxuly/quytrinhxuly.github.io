@@ -131,7 +131,7 @@ const ticketServices = {
               formValues["ngay_bat_dau_tinh_sl_cam_ket"]?.format(
                 "DD/MM/YYYY"
               ) ?? "",
-              formValues["de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg"] ?? "",
+              formValues["de_xuat_gia_ban_tinh_tren_1_kg_bang_gia_toi_thieu_20kg"]?.replace(".", "") ?? "",
 
               createdDate,
               id,

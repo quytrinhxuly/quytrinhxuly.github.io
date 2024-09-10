@@ -75,7 +75,7 @@ function doPost(e) {
 // <HANDLERS>
 
 function test() {
-  const payload = { "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNTk4MzIwIiwiaWF0IjoxNzI1Nzg0Nzk0LCJleHAiOjE3MjU4NzExOTR9.gENe5GooOcNM3FLRzBIdPH8DAZlL1qUqR8PXfcP_20M", "fullname": "Phạm Văn Quỳnh", "sheets": ["QUY_TRINH", "XAC_MINH_KHACH_HANG", "TINH_TRANG_KINH_DOANH", "THONG_TIN_KENH_BAN_HANG"], "sheetData": { "QUY_TRINH": [["c6b2073a-098d-477d-a1fb-07792fb664ec", "Quy Trình Bán Hàng", "QUY TRÌNH ĐỀ XUẤT GIÁ ƯU ĐÃI ĐẶC BIỆT", "1598320", "Hàng Nặng", "Nguy cơ rời bỏ", "123456", "3000", "https://noibo.ghn.vn/eform/form/create?flowId=66b9ba6a97c3a7006a1cfe13", "Shop yêu cầu giá thấp hơn.", "GHTK", "d. Giá đang đi theo Toàn quốc", "h. 20KG", "https://drive.google.com/file/d/10ThBwMygtmw6lG0i6M9xC7W3nfzL55Ab/view?usp=drivesdk", "", "", "Nội Vùng 50% | Liên Vùng 50%", "Free 100% (Hoàn|Giao lại|Khai giá <5 triệu)", "10/09/2024", "50.000.000", "4.000đ", "08/09/2024 15:52:46", "1598320"]], "XAC_MINH_KHACH_HANG": [["41ab987d-a4c8-44d9-b8d1-08f483bb28a9", "c6b2073a-098d-477d-a1fb-07792fb664ec", 1, "thái nguyên", "https://drive.google.com/file/d/1RwfC-lQ5TLnma9VeejAnxMeI92MkhF0s/view?usp=drivesdk", "https://drive.google.com/file/d/1Gm_pgl0Nmt5o_xu4YrXHpZ9HxjQxDIse/view?usp=drivesdk", "Đúng", "thái nguyên", "https://drive.google.com/file/d/1OEmoP07PyHZCcJ2j1g9xwXKxCBVBxDu2/view?usp=drivesdk"], ["ef1eea5e-967f-46fb-b23d-2aa3f6d8656b", "c6b2073a-098d-477d-a1fb-07792fb664ec", 2, "thái nguyên 2", "https://drive.google.com/file/d/1MEw9Rm7ehl095DYL2FHSy0ddtq-qjFy_/view?usp=drivesdk", "https://drive.google.com/file/d/1Of_dpIZRk_e9gP_uM0-V6Rw4G1NOK8B8/view?usp=drivesdk", "Không", "định hóa", "https://drive.google.com/file/d/1gqbty5tY9qHlgPGjwRXwq226LsHqLm3S/view?usp=drivesdk"]], "TINH_TRANG_KINH_DOANH": [["d7327f89-3bdb-4817-8033-f4c9f4c9e595", "c6b2073a-098d-477d-a1fb-07792fb664ec", 1, "Sỉ", "Phụ kiện thời trang", "6,7", "Dưới 6 tháng", "Ít hơn 5 NV"], ["a8e1ebd0-bdd1-499a-aacd-459b5cd041a3", "c6b2073a-098d-477d-a1fb-07792fb664ec", 2, "Lẻ", "Mẹ & bé", "9,10", "Dưới 6 tháng", "Ít hơn 2 NV"]], "THONG_TIN_KENH_BAN_HANG": [["aecd46ca-c8db-41c6-ab47-d8f984067318", "c6b2073a-098d-477d-a1fb-07792fb664ec", 1, "Facebook", "https://quytrinhxuly.github.io/#/", "< 1,000 Theo dõi/Thích", "Có", "Không"], ["59b6dd40-61cc-41d2-8692-d95ca589a22a", "c6b2073a-098d-477d-a1fb-07792fb664ec", 2, "Tiktok", "https://quytrinhxuly.github.io/#/", "< 10,000 Theo dõi/Thích", "Không", "Có"]] } };
+  const payload = { "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNTk4MzIwIiwiaWF0IjoxNzI1OTgwNjMxLCJleHAiOjE3MjYwNjcwMzF9.I590wmbPXoIBXmPIQQPJO7dxgnMcqse32rFEE1yOYjc", "fullname": "Phạm Văn Quỳnh", "sheets": ["QUY_TRINH", "XAC_MINH_KHACH_HANG", "TINH_TRANG_KINH_DOANH", "THONG_TIN_KENH_BAN_HANG"], "sheetData": { "QUY_TRINH": [["8a571b07-9846-4d5f-8c5c-b5e3837a56e4", "Quy Trình Bán Hàng", "QUY TRÌNH ĐỀ XUẤT GIÁ ƯU ĐÃI ĐẶC BIỆT", "1598320", "Hàng Nhẹ", "Đăng ký mới", "Chưa sử dụng", "123456", "", "https://noibo.ghn.vn/eform/form/create?flowId=66b9ba6a97c3a7006a1cfe13", "Shop hiện tại bị đối thủ đạp giá thấp hơn hiện tại nên cần bảng giá thấp hơn để giữ chân.", "VTP", "4000", "a. Giá đang đi theo Nội Tỉnh", "a. 0.3KG", "https://drive.google.com/file/d/1Lb1zMO0RyEAuRKUQiDvcEhJW1VacZKcg/view?usp=drivesdk", "", "4000", "1KG", "Nội Vùng 10% | Liên Vùng 90%", "Free 100% (Hoàn|Giao lại|Khai giá nhỏ hơn 5 triệu)", "10/09/2024", "", "10/09/2024 22:13:37", "1598320"]], "XAC_MINH_KHACH_HANG": [["92d8414e-eed6-4691-bdfb-a86cf569f8e6", "8a571b07-9846-4d5f-8c5c-b5e3837a56e4", 1, "thái nguyên", "https://drive.google.com/file/d/1UwJPNlH0wJ5iEDEMZM6nFuMFWAu6UYkx/view?usp=drivesdk,https://drive.google.com/file/d/1Y91v4oC0kJ7Xmi71t9EhACdf1ITMNQt8/view?usp=drivesdk", "https://drive.google.com/file/d/1stuYtkvd-Bc6OoKmkUMytiWmXx3nhMfN/view?usp=drivesdk", "Đúng", "thái nguyên", "https://drive.google.com/file/d/1vO9pPtvI2XmE6-MxBL2vrj4WA_aZlkh5/view?usp=drivesdk"]], "TINH_TRANG_KINH_DOANH": [["1f5dc048-9987-4ece-aeb0-23c4502134c4", "8a571b07-9846-4d5f-8c5c-b5e3837a56e4", 1, "Sỉ", "Thời trang", "1,3", "Dưới 6 tháng", "Ít hơn 5 NV"]], "THONG_TIN_KENH_BAN_HANG": [["c3f3984d-43de-486c-8913-61d355fb54bf", "8a571b07-9846-4d5f-8c5c-b5e3837a56e4", 1, "Facebook", "https://quytrinhxuly.github.io/#/", "< 5,000 Theo dõi/Thích", "Có", "Có"]] } };
 
   handleSubmitTicket(payload);
 }
@@ -594,14 +594,16 @@ function sendNotificationToTelegram(data, requestType) {
       + STT: ${data[2]}
       + Kênh bán hàng: ${data[3]}
       + Link kênh bán hàng: <a href="${data[4]}">Link tại đây</a>
+      + Lượt theo dõi hoặc thích kênh: ${data[5]}
       + Có chạy quảng cáo không?: ${data[6]}
       + Có livestream bán hàng không: ${data[7]}
       `;
         })
         .join("\n");
-      //+ Lượt theo dõi hoặc thích kênh: ${data[5]}
+
 
       const sheetData = data["sheetData"]["QUY_TRINH"][0];
+
       let messageTemplate = "<b>" +
         sheetData[2] + "</b>\n\n" +
         "ID: " + sheetData[24] + "\n" +
@@ -627,7 +629,7 @@ function sendNotificationToTelegram(data, requestType) {
         "+ Sản lượng đang đi: " + sheetData[12] + "\n" +
         "+ Loại giá đang đi theo Tuyến: " + sheetData[13] + "\n" +
         "+ Loại giá đang đi theo Khối lượng: " + sheetData[14] + "\n" +
-        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " +  genImageLinkMessage(data[15]) + "\n" +
+        "+ Màn hình sản lượng/ doanh thu đơn bên đối thủ: " + genImageLinkMessage(sheetData[15]) + "\n" +
         "+ Doanh thu hàng nặng đang đi bên đối thủ: " + sheetData[16] + "\n" +
         "----------------------------------------------------------------------\n" +
         "<b>Tình trạng kinh doanh</b>\n" +
@@ -642,8 +644,9 @@ function sendNotificationToTelegram(data, requestType) {
         "+ Tỷ trọng đơn Nội Vùng Liên Vùng: " + sheetData[19] + "\n" +
         "+ Chính sách phụ phí: " + sheetData[20] + "\n" +
         "+ Ngày bắt đầu tính SL cam kết: " + sheetData[21] + "\n" +
-        //"+ Doanh thu hàng Nặng cam kết: " + sheetData[19] + "\n" +
         "+ Đề xuất giá bán tính trên 1KG (Bảng giá tối thiểu 20KG): " + sheetData[22] + "\n";
+
+
 
       telegramService.sendMessage(messageTemplate);
     }
